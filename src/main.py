@@ -65,6 +65,13 @@ if __name__ == "__main__":
     print(product2.price)
     print(product2.quantity)
 
+
+
+
+
+
+
+
     print(product3.name)
     print(product3.description)
     print(product3.price)
