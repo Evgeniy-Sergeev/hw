@@ -56,12 +56,6 @@ def test_price_setter_zero():
     assert product.price == 210000.0
 
 
-
-
-
-
-
-
 def test_new_product():
     product_data = {
         "name": "Samsung Galaxy S23 Ultra",
