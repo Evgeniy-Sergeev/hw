@@ -19,15 +19,19 @@ def test_product_init(product) -> Any:
 @pytest.fixture()
 def category() -> Any:
     product4 = Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
-    category2 = Category("Телевизоры",
-                         "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
-                         [product4])
+    category2 = Category(
+        "Телевизоры",
+        "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
+        [product4]
+    )
     return category2
 
 
 def test_category_init(category):
     assert category.name == "Телевизоры"
-    assert category.description == "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником"
+    assert category.description == (
+        "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником"
+    )
 
 
 def test_product_creation():
@@ -78,3 +82,10 @@ def test_category_creation():
         "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.\n"
         "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
     )
+
+
+def test_product_add():
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    expected_sum = (180000.0 * 5) + (210000.0 * 8)
+    assert product1 + product2 == expected_sum
