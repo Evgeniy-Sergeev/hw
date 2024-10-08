@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3a9ce539-dbc8-4be2-a936-f0e4950d0f85" name="Changes" comment="15">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_main.py" afterDir="false" />
     </list>
@@ -24,6 +22,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="pop" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -56,10 +59,10 @@
     "Python.main.executor": "Run",
     "Python.test_main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "#1 on pop"
+    "git-widget-placeholder": "16.1"
   }
 }]]></component>
-  <component name="RunManager" selected="Python tests.Python tests for test_main.test_product_add">
+  <component name="RunManager" selected="Python.main">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pythonProject2" />
       <option name="ENV_FILES" value="" />
@@ -136,8 +139,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for test_main.test_product_add" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python tests.Python tests for test_main.test_product_add" />
         <item itemvalue="Python tests.Python tests for test_main.TestProductCategory" />
         <item itemvalue="Python.test_main" />
       </list>
@@ -159,6 +162,15 @@
       <option name="presentableId" value="Default" />
       <updated>1727879789342</updated>
     </task>
+    <task id="LOCAL-00001" summary="15">
+      <option name="closed" value="true" />
+      <created>1727955283279</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1727955283279</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -171,5 +183,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="15" />
+    <option name="LAST_COMMIT_MESSAGE" value="15" />
   </component>
 </project>
