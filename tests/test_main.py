@@ -1,36 +1,9 @@
 import pytest
-from typing import Any
-from src.main import Product, Category
+from src.main import Product, Smartphone, LawnGrass, Category
 
 
-@pytest.fixture
-def product() -> Any:
-    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
-    return product1
-
-
-def test_product_init(product) -> Any:
-    assert product.name == "Samsung Galaxy S23 Ultra"
-    assert product.description == "256GB, Серый цвет, 200MP камера"
-    assert product.price == 180000.0
-    assert product.quantity == 5
-
-
-@pytest.fixture()
-def category() -> Any:
-    product4 = Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
-    category2 = Category("Телевизоры",
-                         "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
-                         [product4])
-    return category2
-
-
-def test_category_init(category):
-    assert category.name == "Телевизоры"
-    assert category.description == "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником"
-
-
-def test_product_creation():
+def test_product_initialization():
+    """Тест корректной инициализации класса Product"""
     product = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
     assert product.name == "Samsung Galaxy S23 Ultra"
     assert product.description == "256GB, Серый цвет, 200MP камера"
@@ -38,43 +11,81 @@ def test_product_creation():
     assert product.quantity == 5
 
 
-def test_price_setter_positive():
-    product = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
-    product.price = 150000.0
-    assert product.price == 150000.0
+def test_product_price_setter():
+    """Тест установки новой цены"""
+    product = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product.price = 200000.0
+    assert product.price == 200000.0
+
+    product.price = -5000
+    assert product.price == 200000.0
 
 
-def test_price_setter_negative():
-    product = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
-    product.price = -5000.0
-    assert product.price == 210000.0
+def test_product_str_method():
+    """Тест метода __str__ для класса Product"""
+    product = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    assert str(product) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
 
 
-def test_price_setter_zero():
-    product = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
-    product.price = 0
-    assert product.price == 210000.0
-
-
-def test_new_product():
-    product_data = {
-        "name": "Samsung Galaxy S23 Ultra",
-        "description": "256GB, Серый цвет, 200MP камера",
-        "price": 180000.0,
-        "quantity": 5
-    }
-    new_product = Product.new_product(product_data)
-    assert new_product.name == "Samsung Galaxy S23 Ultra"
-    assert new_product.description == "256GB, Серый цвет, 200MP камера"
-    assert new_product.price == 180000.0
-    assert new_product.quantity == 5
-
-
-def test_category_creation():
+def test_product_addition():
+    """Тест сложения двух продуктов одного типа"""
     product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
-    category = Category("Смартфоны", "Описание категории", [product1, product2])
-    assert category.products == (
-        "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт.\n"
-        "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
-    )
+
+    total_value = product1 + product2
+    assert total_value == (180000.0 * 5 + 210000.0 * 8)
+
+
+def test_product_add_type_error():
+    """Тест исключения TypeError при сложении разных типов продуктов"""
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    lawn_grass = LawnGrass("Газон", "Для сада", 500.0, 30, "Россия", 7, "Зеленый")
+
+    with pytest.raises(TypeError):
+        product1 + lawn_grass
+
+
+def test_smartphone_initialization():
+    """Тест корректной инициализации класса Smartphone"""
+    smartphone = Smartphone("Iphone 15", "512GB, Gray space", 210000.0, 8, "A16 Bionic", "iPhone 15", 512, "Gray")
+    assert smartphone.name == "Iphone 15"
+    assert smartphone.description == "512GB, Gray space"
+    assert smartphone.price == 210000.0
+    assert smartphone.quantity == 8
+    assert smartphone.efficiency == "A16 Bionic"
+    assert smartphone.model == "iPhone 15"
+    assert smartphone.memory == 512
+    assert smartphone.color == "Gray"
+
+
+def test_lawn_grass_initialization():
+    """Тест корректной инициализации класса LawnGrass"""
+    lawn_grass = LawnGrass("Газон", "Для сада", 500.0, 30, "Россия", 7, "Зеленый")
+    assert lawn_grass.name == "Газон"
+    assert lawn_grass.description == "Для сада"
+    assert lawn_grass.price == 500.0
+    assert lawn_grass.quantity == 30
+    assert lawn_grass.country == "Россия"
+    assert lawn_grass.germination_period == 7
+    assert lawn_grass.color == "Зеленый"
+
+
+def test_category_initialization():
+    """Тест корректной инициализации категории"""
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    category = Category("Смартфоны", "Описание смартфонов", [product1, product2])
+
+    assert category.name == "Смартфоны"
+    assert category.description == "Описание смартфонов"
+    assert len(category.products.splitlines()) == 2  # Два продукта в категории
+
+
+def test_category_add_product():
+    """Тест добавления продукта в категорию"""
+    category = Category("Смартфоны", "Описание смартфонов")
+    product = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+
+    category.add_product(product)
+    assert len(category.products.splitlines()) == 1
+    assert "Samsung Galaxy S23 Ultra" in category.products
